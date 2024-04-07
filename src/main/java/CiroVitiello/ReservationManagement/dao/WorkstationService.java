@@ -12,6 +12,10 @@ public class WorkstationService {
     @Autowired
     private WorkstationDAO workstationDAO;
 
+    public void save(Workstation workstation){
+        workstationDAO.save(workstation);
+        System.out.println("Workstation saved!");
+    }
 
     public Workstation findById(long workID){
         return workstationDAO.findById(workID).orElseThrow(() -> new WorkstationNotFound(workID));
@@ -19,7 +23,7 @@ public class WorkstationService {
 
     public void findByIdAndUpdate(long workId, Workstation updated){
         Workstation found = this.findById(workId);
-        found.setOccupants(updated.getOccupants());
+        found.setMaxOccupants(updated.getMaxOccupants());
         found.setDescription(updated.getDescription());
         found.setCompanyBuilding(updated.getCompanyBuilding());
         found.setWorkstationType(updated.getWorkstationType());

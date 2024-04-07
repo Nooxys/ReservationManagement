@@ -10,6 +10,13 @@ public class CompanyBuildingService {
     @Autowired
     private CompanyBuildingDAO cbd;
 
+    public void save(CompanyBuilding building){
+if (!cbd.existsByNameAndCity(building.getName(), building.getCity())){
+    cbd.save(building);
+    System.out.println("Building saved!");
+}else {
+    throw  new RuntimeException("this building exist already!");}
+    }
 
     public CompanyBuilding findById(long companyID){
         return cbd.findById(companyID).orElseThrow(() -> new CompanyBuildingNotFoundException(companyID));
