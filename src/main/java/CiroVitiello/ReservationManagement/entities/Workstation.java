@@ -15,7 +15,7 @@ import java.util.List;
 @Entity
 public class Workstation {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Setter(AccessLevel.NONE)
     private long id;
 

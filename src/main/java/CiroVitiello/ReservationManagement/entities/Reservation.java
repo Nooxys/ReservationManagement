@@ -14,7 +14,7 @@ import java.time.LocalDate;
 @Entity
 public class Reservation {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Setter(AccessLevel.NONE)
     private long id;
     @ManyToOne
@@ -23,10 +23,10 @@ public class Reservation {
     @ManyToOne
     @JoinColumn(name = "workstation_id")
     private Workstation workstation;
-    private LocalDate Date;
+    private LocalDate date;
 
     public Reservation(LocalDate date, User user, Workstation workstation) {
-        Date = date;
+        this.date = date;
         this.user = user;
         this.workstation = workstation;
     }
@@ -37,7 +37,7 @@ public class Reservation {
                 "id=" + id +
                 ", user=" + user +
                 ", workstation=" + workstation +
-                ", Date=" + Date +
+                ", date=" + date +
                 '}';
     }
 }

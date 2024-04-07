@@ -2,10 +2,14 @@ package CiroVitiello.ReservationManagement.dao;
 
 import CiroVitiello.ReservationManagement.entities.User;
 import CiroVitiello.ReservationManagement.entities.Workstation;
+import CiroVitiello.ReservationManagement.enums.WorkstationType;
 import CiroVitiello.ReservationManagement.exceptions.UserNotFoundException;
 import CiroVitiello.ReservationManagement.exceptions.WorkstationNotFound;
+import org.hibernate.jdbc.Work;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class WorkstationService {
@@ -35,5 +39,9 @@ public class WorkstationService {
         Workstation found = this.findById(workID);
         workstationDAO.delete(found);
         System.out.println(" User " + workID + "deleted!");
+    }
+
+    public List<Workstation> filterWorkstationByTypeAndCity(WorkstationType workstation, String city){
+        return workstationDAO.filterWorkstationByTypeAndCity(workstation, city);
     }
 }
